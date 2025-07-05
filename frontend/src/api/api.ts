@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://study-planner-typescript.onrender.com/api";
 
 export async function getStudents() {
   const res = await fetch(`${BASE_URL}/students`);
