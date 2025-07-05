@@ -1,6 +1,10 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-
+declare module "jspdf" {
+  interface jsPDF {
+    lastAutoTable?: { finalY?: number };
+  }
+}
 export function downloadStudyPlanPDF(
   student: any,
   examType: string,
@@ -56,7 +60,7 @@ export function downloadStudyPlanPDF(
       styles: { fontSize: 10 },
       margin: { left: 10, right: 10 },
     });
-    y = doc.lastAutoTable.finalY + 8;
+    y = (doc.lastAutoTable?.finalY ?? y + 30) + 8;
   });
 
   doc.save(`study_plan_${student.name}_${examType}.pdf`);
